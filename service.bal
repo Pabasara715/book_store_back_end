@@ -5,14 +5,18 @@ import ballerina/persist;
 
 final store:Client sClient = check new ();
 
+@http:ServiceConfig {
+    cors: {
+        allowOrigins: ["https://3ad45069-6f2b-47e3-9915-9586f353223b.e1-eu-north-azure.choreoapps.dev", "http://www.hello.com"],
+        allowCredentials: true,
+        allowHeaders: ["x-jwt-assertion", "X-PINGOTHER"],
+        exposeHeaders: ["X-CUSTOM-HEADER"],
+        maxAge: 84900
+
+    }
+}
 service / on new http:Listener(9090) {
 
-    @http:ResourceConfig {
-        cors: {
-
-            allowHeaders: ["X-Content-Type-Options", "X-PINGOTHER"]
-        }
-    }
     resource function post books(store:BookRequest book) returns int|error {
         store:BookInsert bookInsert = check book.cloneWithType();
         int[] bookIds = check sClient->/books.post([bookInsert]);
