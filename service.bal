@@ -8,12 +8,13 @@ final store:Client sClient = check new ();
 @http:ServiceConfig {
     cors: {
         allowOrigins: ["*"],
-        allowCredentials: true,
-        allowHeaders: ["x-jwt-assertion", "X-Content-Type-Options"],
+        allowCredentials: false,
+        allowMethods: ["GET", "POST", "PUT", "DELETE"],
+        allowHeaders: ["Authorization", "content-type", "Accept", "x-jwt-assertion"],
         maxAge: 84900
-
     }
 }
+
 service / on new http:Listener(9090) {
 
     resource function post books(store:BookRequest book) returns int|error {
