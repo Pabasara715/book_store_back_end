@@ -7,10 +7,9 @@ final store:Client sClient = check new ();
 
 @http:ServiceConfig {
     cors: {
-        allowOrigins: ["https://3ad45069-6f2b-47e3-9915-9586f353223b.e1-eu-north-azure.choreoapps.dev", "http://www.hello.com"],
+        allowOrigins: ["https://3ad45069-6f2b-47e3-9915-9586f353223b.e1-eu-north-azure.choreoapps.dev"],
         allowCredentials: true,
-        allowHeaders: ["x-jwt-assertion", "X-PINGOTHER"],
-        exposeHeaders: ["X-CUSTOM-HEADER"],
+        allowHeaders: ["x-jwt-assertion"],
         maxAge: 84900
 
     }
