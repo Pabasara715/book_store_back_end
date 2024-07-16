@@ -9,7 +9,7 @@ final store:Client sClient = check new ();
     cors: {
         allowOrigins: ["*"],
         allowCredentials: true,
-        allowHeaders: ["x-jwt-assertion"],
+        allowHeaders: ["x-jwt-assertion", "X-Content-Type-Options"],
         maxAge: 84900
 
     }
