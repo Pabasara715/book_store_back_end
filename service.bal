@@ -5,6 +5,7 @@ import ballerina/persist;
 
 final store:Client sClient = check new ();
 
+// Apply service-level CORS configuration
 @http:ServiceConfig {
     cors: {
         allowOrigins: ["*"],
@@ -14,7 +15,6 @@ final store:Client sClient = check new ();
         maxAge: 84900
     }
 }
-
 service / on new http:Listener(9090) {
 
     resource function post books(store:BookRequest book) returns int|error {
